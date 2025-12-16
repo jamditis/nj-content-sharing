@@ -25,9 +25,14 @@ A React/Vite portal has been built in the `/portal` directory.
   - Editorial meetings section (format description, poll placeholder)
   - Attribution section (draft boilerplate text ready for Stefanie's review)
 
-**Next step:**
-- Run the `frontend-design` skill to review UI/UX and polish the portal
-- To start dev server: `cd portal && npm run dev` (runs on http://localhost:5173)
+**Next steps:**
+- Deploy production build to centerforcooperativemedia.org/programs/contentnetwork/ via FTP
+- Get actual DML widget embed codes from Dave and replace placeholders
+- Add scheduling poll embed for editorial meetings section
+- Send boilerplate attribution text to Stefanie for review
+
+**Production build:** `cd portal && npm run build` (outputs to `dist/` folder)
+**Dev server:** `cd portal && npm run dev` (runs on http://localhost:5173)
 
 ### Commands
 
