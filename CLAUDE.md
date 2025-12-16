@@ -49,9 +49,16 @@ npm run dev
 - **Dave (DML)**: Platform provider for automated widgets
 - **John Mooney (NJ Spotlight)**: Key content partner
 
-## Technical blockers
+## RSS feeds
 
-The primary technical blocker is the lack of full-text RSS feeds from partner organizations (especially NJ Spotlight). Without full-text feeds, stories must be manually uploaded to PluckyWire, risking missed content. Solving RSS feed issues is the highest priority technical task.
+**NJ Spotlight full-text feed discovered (2025-12-16):**
+- URL: https://www.njspotlightnews.org/feed/rss_full/
+- This enables automated content ingestion for both DML and PluckyWire
+
+Other partner RSS feeds (status TBD):
+- NJ Arts
+- NJ Statehouse News
+- South Jersey Climate News
 
 ## Partner organizations
 
