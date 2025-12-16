@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NJ Content Sharing Network | NJ News Commons</title>
+  <link rel="icon" href="https://centerforcooperativemedia.org/wp-content/uploads/2023/09/cropped-favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --editorial-red: #CA3553;
+      --red-700: #b91c1c;
+      --red-800: #991b1b;
+      --red-900: #7f1d1d;
+      --red-50: #fef2f2;
+      --red-100: #fee2e2;
+      --red-400: #f87171;
+      --red-500: #ef4444;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --gray-950: #030712;
+      --paper-white: #FAFAF8;
+      --ink-black: #1a1a1a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      background-color: var(--paper-white);
+      color: var(--gray-900);
+      line-height: 1.6;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .serif {
+      font-family: 'Playfair Display', serif;
+    }
+
+    ::selection {
+      background-color: var(--red-100);
+      color: var(--red-900);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 50;
+      transition: all 0.2s;
+      border-bottom: 1px solid transparent;
+      padding: 1.5rem 0;
+    }
+
+    .nav.scrolled {
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom-color: var(--gray-200);
+      padding: 0.75rem 0;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-logo {
+      width: 2rem;
+      height: 2rem;
+      background-color: var(--red-700);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: bold;
+      border-radius: 2px;
+      transition: transform 0.3s;
+    }
+
+    .nav.scrolled .nav-logo {
+      transform: scale(0.9);
+    }
+
+    .nav-title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-title-main {
+      font-family: 'Playfair Display', serif;
+      font-weight: bold;
+      font-size: 1.25rem;
+      line-height: 1;
+      color: var(--gray-900);
+      transition: font-size 0.2s;
+    }
+
+    .nav.scrolled .nav-title-main {
+      font-size: 1.125rem;
+    }
+
+    .nav-title-sub {
+      font-size: 0.625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--red-700);
+      font-weight: 600;
+      margin-top: 0.125rem;
+    }
+
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 2rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+      }
+    }
+
+    .nav-links a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--red-700);
+    }
+
+    .nav-links .nav-cta {
+      color: var(--red-700);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .nav-links .nav-cta:hover {
+      color: var(--red-900);
+    }
+
+    .mobile-menu-btn {
+      display: block;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--gray-900);
+    }
+
+    @media (min-width: 768px) {
+      .mobile-menu-btn {
+        display: none;
+      }
+    }
+
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: white;
+      border-bottom: 1px solid var(--gray-200);
+      padding: 1.5rem;
+      flex-direction: column;
+      gap: 1rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.125rem;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .mobile-menu a.highlight {
+      color: var(--red-700);
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      padding: 10rem 0 5rem;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .hero {
+        padding: 13rem 0 8rem;
+      }
+    }
+
+    .hero-bg-gradient {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 66%;
+      height: 100%;
+      background: linear-gradient(to left, rgba(254, 242, 242, 0.5), transparent);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .hero-bg-blob {
+      position: absolute;
+      bottom: 0;
+      left: 2.5rem;
+      width: 16rem;
+      height: 16rem;
+      background: var(--gray-100);
+      border-radius: 50%;
+      filter: blur(48px);
+      opacity: 0.5;
+      z-index: -1;
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--red-700);
+      font-weight: bold;
+      letter-spacing: 0.2em;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-eyebrow-line {
+      width: 2rem;
+      height: 1px;
+      background: var(--red-700);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--gray-900);
+      margin-bottom: 2rem;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+    }
+
+    @media (min-width: 768px) {
+      .hero h1 {
+        font-size: 4.5rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero h1 {
+        font-size: 6rem;
+      }
+    }
+
+    .hero h1 .gradient-text {
+      background: linear-gradient(to right, var(--red-700), var(--red-900));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-style: italic;
+      padding-right: 0.5rem;
+    }
+
+    .hero-description {
+      font-size: 1.25rem;
+      color: var(--gray-600);
+      max-width: 42rem;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+    }
+
+    @media (min-width: 768px) {
+      .hero-description {
+        font-size: 1.5rem;
+      }
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border-radius: 2px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: var(--gray-900);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--red-700);
+    }
+
+    .btn-secondary {
+      background: white;
+      border: 1px solid var(--gray-300);
+      color: var(--gray-900);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gray-900);
+    }
+
+    .btn-red {
+      background: var(--red-700);
+      color: white;
+    }
+
+    .btn-red:hover {
+      background: var(--gray-900);
+    }
+
+    /* Sections */
+    .section {
+      padding: 6rem 0;
+    }
+
+    .section-white {
+      background: white;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .section-header {
+      margin-bottom: 4rem;
+      max-width: 48rem;
+    }
+
+    .section-label {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border: 1px solid rgba(185, 28, 28, 0.3);
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red-700);
+      background: var(--red-50);
+      margin-bottom: 1rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--gray-900);
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+
+    @media (min-width: 768px) {
+      .section-header h2 {
+        font-size: 3rem;
+      }
+    }
+
+    .section-header p {
+      font-size: 1.125rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      max-width: 42rem;
+    }
+
+    /* Widget Cards */
+    .widget-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .widget-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .widget-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .widget-card {
+      position: relative;
+      background: white;
+      border: 1px solid var(--gray-200);
+      padding: 2rem;
+      transition: border-color 0.2s;
+    }
+
+    .widget-card:hover {
+      border-color: var(--red-700);
+    }
+
+    .widget-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--red-700);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .widget-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .widget-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+
+    .widget-badge {
+      padding: 0.25rem 0.5rem;
+      background: var(--gray-100);
+      color: var(--gray-600);
+      font-size: 0.625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: bold;
+    }
+
+    .widget-card-arrow {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--red-50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--red-700);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .widget-card:hover .widget-card-arrow {
+      opacity: 1;
+    }
+
+    .widget-card h3 {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: var(--gray-900);
+      margin-bottom: 0.75rem;
+      transition: color 0.2s;
+    }
+
+    .widget-card:hover h3 {
+      color: var(--red-700);
+    }
+
+    .widget-card > p {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .widget-preview {
+      background: var(--gray-50);
+      border: 1px dashed var(--gray-300);
+      padding: 1rem;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    .widget-preview p {
+      font-size: 0.75rem;
+      color: var(--gray-400);
+      font-family: monospace;
+    }
+
+    /* Info Box */
+    .info-box {
+      margin-top: 3rem;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      padding: 2rem;
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    @media (min-width: 768px) {
+      .info-box {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .info-box-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .info-box-icon {
+      padding: 0.75rem;
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: 50%;
+      color: var(--red-700);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .info-box h4 {
+      font-size: 1.125rem;
+      font-weight: bold;
+      color: var(--gray-900);
+      margin-bottom: 0.25rem;
+    }
+
+    .info-box p {
+      color: var(--gray-600);
+    }
+
+    .info-box-link {
+      color: var(--red-700);
+      font-weight: bold;
+      text-decoration: none;
+      border-bottom: 2px solid var(--red-700);
+      padding-bottom: 2px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .info-box-link:hover {
+      color: var(--gray-900);
+      border-color: var(--gray-900);
+    }
+
+    /* PluckyWire Section */
+    .pluckywire-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    @media (min-width: 1024px) {
+      .pluckywire-grid {
+        grid-template-columns: 5fr 7fr;
+        gap: 5rem;
+      }
+    }
+
+    .pluckywire-left {
+      position: relative;
+    }
+
+    @media (min-width: 1024px) {
+      .pluckywire-left {
+        position: sticky;
+        top: 8rem;
+        align-self: start;
+      }
+    }
+
+    .feature-card {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      background: white;
+      border-left: 4px solid var(--red-700);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-card.secondary {
+      border-left-color: var(--gray-200);
+    }
+
+    .feature-card.secondary:hover {
+      border-left-color: var(--gray-400);
+    }
+
+    .feature-card-icon {
+      flex-shrink: 0;
+    }
+
+    .feature-card-icon.red {
+      color: var(--red-700);
+    }
+
+    .feature-card-icon.gray {
+      color: var(--gray-400);
+    }
+
+    .feature-card h4 {
+      font-weight: bold;
+      color: var(--gray-900);
+      margin-bottom: 0.25rem;
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .feature-card p {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+    }
+
+    .pluckywire-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .pluckywire-buttons {
+        flex-direction: row;
+      }
+    }
+
+    .pluckywire-right {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .how-it-works-box {
+      background: white;
+      padding: 2rem;
+      border: 1px solid var(--gray-200);
+      box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    .how-it-works-box h3 {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-top: 1.5rem;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      font-size: 0.875rem;
+      color: var(--gray-700);
+      margin-bottom: 1rem;
+    }
+
+    .feature-list-check {
+      flex-shrink: 0;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      background: var(--red-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--red-700);
+      margin-right: 0.75rem;
+      margin-top: 0.125rem;
+    }
+
+    .partners-box {
+      background: var(--gray-900);
+      color: white;
+      padding: 2rem;
+      border: 1px solid var(--gray-900);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .partners-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 8rem;
+      height: 8rem;
+      background: var(--red-700);
+      border-radius: 50%;
+      filter: blur(48px);
+      opacity: 0.2;
+      margin-right: -2.5rem;
+      margin-top: -2.5rem;
+    }
+
+    .partners-box h3 {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      color: var(--red-50);
+      position: relative;
+      z-index: 1;
+    }
+
+    .partners-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (min-width: 640px) {
+      .partners-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .partner-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+
+    .partner-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .partner-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      background: var(--red-500);
+      border-radius: 50%;
+    }
+
+    .partner-item span {
+      font-weight: 500;
+      font-size: 0.875rem;
+    }
+
+    .partners-note {
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      color: var(--gray-400);
+      font-family: monospace;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Roundup & Meetings */
+    .split-section {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    @media (min-width: 768px) {
+      .split-section {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6rem;
+      }
+    }
+
+    .split-left-header,
+    .split-right-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--red-700);
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .split-section h2 {
+      font-size: 1.875rem;
+      font-weight: bold;
+      color: var(--gray-900);
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .split-section h2 {
+        font-size: 2.25rem;
+      }
+    }
+
+    .split-section > div > p {
+      color: var(--gray-600);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .topics-box {
+      background: var(--gray-50);
+      padding: 1.5rem;
+      border-radius: 2px;
+      border: 1px solid var(--gray-100);
+      margin-bottom: 2rem;
+    }
+
+    .topics-box h4 {
+      font-weight: bold;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      margin-bottom: 1rem;
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .topics-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .topic-tag {
+      padding: 0.25rem 0.75rem;
+      background: white;
+      border: 1px solid var(--gray-200);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--gray-700);
+    }
+
+    .subscribe-btn {
+      display: block;
+      width: 100%;
+      background: var(--red-700);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .subscribe-btn:hover {
+      background: var(--red-800);
+    }
+
+    .split-right {
+      border-top: 1px solid var(--gray-200);
+      padding-top: 3rem;
+    }
+
+    @media (min-width: 768px) {
+      .split-right {
+        border-top: none;
+        border-left: 1px solid var(--gray-200);
+        padding-top: 0;
+        padding-left: 3rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .split-right {
+        padding-left: 6rem;
+      }
+    }
+
+    .meeting-features {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .meeting-feature {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .meeting-feature-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background: var(--red-50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--red-700);
+      flex-shrink: 0;
+      margin-top: 0.25rem;
+    }
+
+    .meeting-feature h4 {
+      font-weight: bold;
+      color: var(--gray-900);
+      margin-bottom: 0.25rem;
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .meeting-feature p {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+    }
+
+    .coming-soon-box {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #fefce8;
+      border: 1px solid #fef08a;
+      border-radius: 2px;
+      font-size: 0.875rem;
+      color: #854d0e;
+    }
+
+    /* Attribution Section */
+    .attribution-section {
+      padding: 6rem 0;
+      background: var(--gray-900);
+      color: var(--gray-300);
+    }
+
+    .attribution-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      align-items: flex-start;
+    }
+
+    @media (min-width: 768px) {
+      .attribution-grid {
+        flex-direction: row;
+      }
+    }
+
+    .attribution-left {
+      flex: 0 0 33%;
+    }
+
+    .attribution-label {
+      color: var(--red-500);
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .attribution-left h2 {
+      font-size: 1.875rem;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .attribution-left h2 {
+        font-size: 2.25rem;
+      }
+    }
+
+    .attribution-left > p {
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      color: var(--gray-400);
+    }
+
+    .attribution-note {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--red-400);
+    }
+
+    .attribution-right {
+      flex: 0 0 67%;
+      width: 100%;
+    }
+
+    .boilerplate-box {
+      background: var(--gray-800);
+      border-radius: 8px;
+      border: 1px solid var(--gray-700);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .boilerplate-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      background: var(--gray-950);
+      border-bottom: 1px solid var(--gray-700);
+    }
+
+    .boilerplate-header span {
+      font-size: 0.75rem;
+      font-family: monospace;
+      color: var(--gray-500);
+    }
+
+    .copy-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--gray-400);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .copy-btn:hover {
+      color: white;
+    }
+
+    .copy-btn.copied {
+      color: #22c55e;
+    }
+
+    .boilerplate-content {
+      padding: 1.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--gray-200);
+    }
+
+    .boilerplate-content .highlight {
+      color: var(--red-400);
+      font-weight: bold;
+    }
+
+    .boilerplate-accent {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 4rem;
+      height: 4rem;
+      background: linear-gradient(to top left, rgba(127, 29, 29, 0.2), transparent);
+      pointer-events: none;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--gray-950);
+      color: var(--gray-500);
+      padding: 4rem 0;
+      border-top: 1px solid var(--gray-900);
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+    }
+
+    .footer-brand {
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .footer-brand {
+        text-align: left;
+      }
+    }
+
+    .footer-brand-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .footer-brand-logo {
+        justify-content: flex-start;
+      }
+    }
+
+    .footer-brand-logo div {
+      width: 2rem;
+      height: 2rem;
+      background: var(--red-900);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: bold;
+      border-radius: 2px;
+    }
+
+    .footer-brand-logo span {
+      color: var(--gray-200);
+      font-family: 'Playfair Display', serif;
+      font-weight: bold;
+      font-size: 1.125rem;
+    }
+
+    .footer-brand > p {
+      font-size: 0.875rem;
+      max-width: 24rem;
+    }
+
+    .footer-brand a {
+      color: var(--gray-300);
+      text-decoration: underline;
+      text-decoration-color: var(--red-900);
+      text-underline-offset: 4px;
+      transition: color 0.2s;
+    }
+
+    .footer-brand a:hover {
+      color: white;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.875rem;
+    }
+
+    .footer-links a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--gray-900);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--gray-700);
+    }
+
+    @media (min-width: 768px) {
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+    }
+
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(1rem);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Icons (SVG inline) */
+    .icon {
+      width: 1em;
+      height: 1em;
+      vertical-align: middle;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .icon-sm {
+      width: 14px;
+      height: 14px;
+    }
+
+    .icon-md {
+      width: 16px;
+      height: 16px;
+    }
+
+    .icon-lg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .icon-xl {
+      width: 24px;
+      height: 24px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-content">
+        <div class="nav-brand">
+          <div class="nav-logo">NJ</div>
+          <div class="nav-title">
+            <span class="nav-title-main">Content Sharing Network</span>
+            <span class="nav-title-sub">NJ News Commons</span>
+          </div>
+        </div>
+
+        <div class="nav-links">
+          <a href="#widgets">Widgets</a>
+          <a href="#pluckywire">PluckyWire</a>
+          <a href="#roundup">Roundup</a>
+          <a href="#editorial-meetings">Meetings</a>
+          <a href="#attribution" class="nav-cta">
+            Guidelines
+            <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+          <svg class="icon icon-xl" id="menuIcon" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+          <svg class="icon icon-xl" id="closeIcon" viewBox="0 0 24 24" style="display:none"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#widgets" onclick="closeMobileMenu()">Widgets</a>
+        <a href="#pluckywire" onclick="closeMobileMenu()">PluckyWire</a>
+        <a href="#roundup" onclick="closeMobileMenu()">Daily roundup</a>
+        <a href="#editorial-meetings" onclick="closeMobileMenu()">Editorial meetings</a>
+        <a href="#attribution" class="highlight" onclick="closeMobileMenu()">Attribution guidelines</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg-gradient"></div>
+    <div class="hero-bg-blob"></div>
+    <div class="container">
+      <div class="fade-in">
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-line"></span>
+          Collaborative journalism infrastructure
+        </div>
+        <h1>
+          Share and access <br>
+          <span class="gradient-text">local journalism</span><br>
+          across New Jersey.
+        </h1>
+        <p class="hero-description">
+          The NJ Content Sharing Network connects local news organizations to share stories, expand coverage, and strengthen democracy throughout the state.
+        </p>
+        <div class="hero-buttons">
+          <a href="#pluckywire" class="btn btn-primary">
+            Start sharing
+            <svg class="icon" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+          </a>
+          <a href="#widgets" class="btn btn-secondary">
+            Explore widgets
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Widgets Section -->
+  <section id="widgets" class="section section-white">
+    <div class="container">
+      <div class="fade-in">
+        <div class="section-header">
+          <span class="section-label">Automated content feeds</span>
+          <h2>Content widgets from Distributed Media Lab</h2>
+          <p>Add a stream of curated New Jersey news to your website with embeddable widgets. Choose from different content sources and customize the display for your audience.</p>
+        </div>
+      </div>
+
+      <div class="widget-grid">
+        <div class="widget-card fade-in">
+          <div class="widget-card-header">
+            <span class="widget-badge">Statewide policy</span>
+            <div class="widget-card-arrow">
+              <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+          <h3>NJ Spotlight News</h3>
+          <p>Embed a continuously updated feed of statewide policy, politics, and investigative reporting.</p>
+          <div class="widget-preview">
+            <p>Widget preview unavailable</p>
+          </div>
+        </div>
+
+        <div class="widget-card fade-in">
+          <div class="widget-card-header">
+            <span class="widget-badge">Arts & culture</span>
+            <div class="widget-card-arrow">
+              <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+          <h3>NJ Arts</h3>
+          <p>Feature comprehensive arts, culture, and entertainment coverage from NJ Arts on your site.</p>
+          <div class="widget-preview">
+            <p>Widget preview unavailable</p>
+          </div>
+        </div>
+
+        <div class="widget-card fade-in">
+          <div class="widget-card-header">
+            <span class="widget-badge">Government</span>
+            <div class="widget-card-arrow">
+              <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+          <h3>NJ Statehouse</h3>
+          <p>Keep your readers informed with state government and legislative coverage.</p>
+          <div class="widget-preview">
+            <p>Widget preview unavailable</p>
+          </div>
+        </div>
+
+        <div class="widget-card fade-in">
+          <div class="widget-card-header">
+            <span class="widget-badge">Environment</span>
+            <div class="widget-card-arrow">
+              <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+          <h3>SJ Climate News</h3>
+          <p>Environmental and climate coverage focused on South Jersey and the broader region.</p>
+          <div class="widget-preview">
+            <p>Widget preview unavailable</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box fade-in">
+        <div class="info-box-content">
+          <div class="info-box-icon">
+            <svg class="icon icon-xl" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          </div>
+          <div>
+            <h4>Need a custom widget?</h4>
+            <p>We can configure widgets filtered by topic, geography, or other criteria relevant to your audience.</p>
+          </div>
+        </div>
+        <a href="mailto:info@centerforcooperativemedia.org" class="info-box-link">Contact us to discuss</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PluckyWire Section -->
+  <section id="pluckywire" class="section">
+    <div class="container">
+      <div class="pluckywire-grid">
+        <div class="pluckywire-left fade-in">
+          <div class="section-header">
+            <span class="section-label">Story-by-story sharing</span>
+            <h2>Browse and republish with PluckyWire</h2>
+            <p>A streamlined content-sharing platform where member outlets can browse stories from other participating news organizations and republish them with one click.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card-icon red">
+              <svg class="icon icon-xl" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>
+            </div>
+            <div>
+              <h4>One-click republishing</h4>
+              <p>Copy story content with attribution included automatically.</p>
+            </div>
+          </div>
+
+          <div class="feature-card secondary">
+            <div class="feature-card-icon gray">
+              <svg class="icon icon-xl" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>
+            </div>
+            <div>
+              <h4>Weekly digests</h4>
+              <p>Get a curated list of available content delivered to your inbox.</p>
+            </div>
+          </div>
+
+          <div class="pluckywire-buttons">
+            <a href="https://wire.pluckyworks.org/" target="_blank" rel="noopener noreferrer" class="btn btn-red">Browse stories</a>
+            <a href="mailto:info@centerforcooperativemedia.org" class="btn btn-secondary">Request access</a>
+          </div>
+        </div>
+
+        <div class="pluckywire-right">
+          <div class="how-it-works-box fade-in">
+            <h3>How it works</h3>
+            <ul class="feature-list">
+              <li>
+                <span class="feature-list-check">
+                  <svg class="icon" style="width:10px;height:10px" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                Browse stories by topic, outlet, or date
+              </li>
+              <li>
+                <span class="feature-list-check">
+                  <svg class="icon" style="width:10px;height:10px" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                Copy full story HTML with one click
+              </li>
+              <li>
+                <span class="feature-list-check">
+                  <svg class="icon" style="width:10px;height:10px" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                Automatic boilerplate credit included
+              </li>
+              <li>
+                <span class="feature-list-check">
+                  <svg class="icon" style="width:10px;height:10px" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                </span>
+                Track republishing metrics automatically
+              </li>
+            </ul>
+          </div>
+
+          <div class="partners-box fade-in">
+            <h3>Participating partners</h3>
+            <div class="partners-grid">
+              <div class="partner-item">
+                <div class="partner-dot"></div>
+                <span>NJ Spotlight News</span>
+              </div>
+              <div class="partner-item">
+                <div class="partner-dot"></div>
+                <span>NJ Arts</span>
+              </div>
+              <div class="partner-item">
+                <div class="partner-dot"></div>
+                <span>NJ Statehouse News</span>
+              </div>
+              <div class="partner-item">
+                <div class="partner-dot"></div>
+                <span>South Jersey Climate News</span>
+              </div>
+              <div class="partner-item">
+                <div class="partner-dot"></div>
+                <span>Mosaic NJ</span>
+              </div>
+              <div class="partner-item">
+                <div class="partner-dot"></div>
+                <span>Local Source</span>
+              </div>
+            </div>
+            <p class="partners-note">+ More outlets joining the network monthly</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roundup & Meetings Section -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="split-section">
+        <div id="roundup" class="fade-in">
+          <div class="split-left-header">
+            <svg class="icon icon-md" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            <span>Stay informed</span>
+          </div>
+          <h2>Daily news roundup</h2>
+          <p>Join thousands of NJ news professionals. We aggregate the most important stories from NJ News Commons partners and deliver them to your inbox every weekday morning.</p>
+
+          <div class="topics-box">
+            <h4>Curated topics</h4>
+            <div class="topics-tags">
+              <span class="topic-tag">State government</span>
+              <span class="topic-tag">Education</span>
+              <span class="topic-tag">Environment</span>
+              <span class="topic-tag">Arts & culture</span>
+              <span class="topic-tag">Health</span>
+              <span class="topic-tag">Community</span>
+            </div>
+          </div>
+
+          <a href="https://centerforcooperativemedia.us5.list-manage.com/subscribe?u=7f46611cb324e9e193acda7cc&id=dd61b54487" target="_blank" rel="noopener noreferrer" class="subscribe-btn">Subscribe now</a>
+        </div>
+
+        <div id="editorial-meetings" class="split-right fade-in">
+          <div class="split-right-header">
+            <svg class="icon icon-md" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            <span>Collaboration</span>
+          </div>
+          <h2>Open editorial meetings</h2>
+          <p>Join monthly meetings where partners share story plans, collaborate on coverage, and learn from guest speakers.</p>
+
+          <div class="meeting-features">
+            <div class="meeting-feature">
+              <div class="meeting-feature-icon">
+                <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+              </div>
+              <div>
+                <h4>Roundtable</h4>
+                <p>Partners share upcoming story plans and finding collaboration angles.</p>
+              </div>
+            </div>
+            <div class="meeting-feature">
+              <div class="meeting-feature-icon">
+                <svg class="icon icon-lg" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              </div>
+              <div>
+                <h4>Data deep dive</h4>
+                <p>Guest speakers present data resources and tools for local reporting.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="coming-soon-box">
+            <strong>Coming soon:</strong> Pilot meetings begin in late January 2025.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Attribution Section -->
+  <section id="attribution" class="attribution-section">
+    <div class="container">
+      <div class="attribution-grid fade-in">
+        <div class="attribution-left">
+          <span class="attribution-label">Guidelines</span>
+          <h2>Proper attribution</h2>
+          <p>All shared content requires proper attribution. We've standardized this to protect the original publishers while ensuring transparency for readers.</p>
+          <div class="attribution-note">
+            <svg class="icon icon-md" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <span>Included automatically in widgets</span>
+          </div>
+        </div>
+
+        <div class="attribution-right">
+          <div class="boilerplate-box">
+            <div class="boilerplate-header">
+              <span>Standard boilerplate</span>
+              <button class="copy-btn" id="copyBtn" onclick="copyBoilerplate()">
+                <svg class="icon icon-sm" id="copyIcon" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                <svg class="icon icon-sm" id="checkIcon" viewBox="0 0 24 24" style="display:none;color:#22c55e"><path d="M20 6L9 17l-5-5"/></svg>
+                <span id="copyText">Copy text</span>
+              </button>
+            </div>
+            <div class="boilerplate-content">
+              <p>"This story was originally published by <span class="highlight">[Original Outlet Name]</span> and is republished here through the NJ News Commons content-sharing network. The NJ News Commons is a collaborative of news organizations across New Jersey, supported by the Center for Cooperative Media at Montclair State University."</p>
+            </div>
+            <div class="boilerplate-accent"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-brand-logo">
+            <div>NJ</div>
+            <span>Content Sharing Network</span>
+          </div>
+          <p>A program of the <a href="https://centerforcooperativemedia.org">Center for Cooperative Media</a> at Montclair State University.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="mailto:info@centerforcooperativemedia.org">
+            <svg class="icon icon-md" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            Contact support
+          </a>
+          <a href="https://centerforcooperativemedia.org" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-md" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+            Visit Center website
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Center for Cooperative Media. All rights reserved.</p>
+        <p>Built for New Jersey journalism.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll handling for nav
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      menuIcon.style.display = isOpen ? 'none' : 'block';
+      closeIcon.style.display = isOpen ? 'block' : 'none';
+    });
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      menuIcon.style.display = 'block';
+      closeIcon.style.display = 'none';
+    }
+
+    // Copy boilerplate
+    function copyBoilerplate() {
+      const text = `This story was originally published by [Original Outlet Name] and is republished here through the NJ News Commons content-sharing network. The NJ News Commons is a collaborative of news organizations across New Jersey, supported by the Center for Cooperative Media at Montclair State University. For more information, visit centerforcooperativemedia.org.`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        const copyBtn = document.getElementById('copyBtn');
+        const copyIcon = document.getElementById('copyIcon');
+        const checkIcon = document.getElementById('checkIcon');
+        const copyText = document.getElementById('copyText');
+
+        copyBtn.classList.add('copied');
+        copyIcon.style.display = 'none';
+        checkIcon.style.display = 'block';
+        copyText.textContent = 'Copied';
+
+        setTimeout(() => {
+          copyBtn.classList.remove('copied');
+          copyIcon.style.display = 'block';
+          checkIcon.style.display = 'none';
+          copyText.textContent = 'Copy text';
+        }, 2000);
+      });
+    }
+
+    // Intersection Observer for fade-in animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

@@ -1,13 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
-import {
-  Newspaper,
-  Share2,
-  Users,
-  Calendar,
-  ChevronRight,
-  ExternalLink,
-  Copy,
-  Check,
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  Newspaper, 
+  Share2, 
+  Users, 
+  Calendar, 
+  ChevronRight, 
+  ExternalLink, 
+  Copy, 
+  Check, 
   Mail,
   ArrowRight,
   Info,
@@ -44,7 +44,7 @@ const useOnScreen = (options) => {
 
 const FadeInSection = ({ children, delay = 0, className = "" }) => {
   const [ref, isVisible] = useOnScreen({ threshold: 0.1 });
-
+  
   return (
     <div
       ref={ref}
@@ -135,7 +135,7 @@ export default function App() {
       {/* --- Global Styles & Fonts --- */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap');
-
+        
         :root {
           --editorial-red: #CA3553;
           --ink-black: #1a1a1a;
@@ -161,10 +161,10 @@ export default function App() {
       `}</style>
 
       {/* --- Navigation --- */}
-      <nav
+      <nav 
         className={`fixed top-0 w-full z-50 transition-all duration-200 border-b ${
-          isScrolled
-            ? 'bg-white/95 backdrop-blur-md border-gray-200 py-3 shadow-sm'
+          isScrolled 
+            ? 'bg-white/95 backdrop-blur-md border-gray-200 py-3 shadow-sm' 
             : 'bg-transparent border-transparent py-6'
         }`}
       >
@@ -195,7 +195,7 @@ export default function App() {
           </div>
 
           {/* Mobile Menu Toggle */}
-          <button
+          <button 
             className="md:hidden text-gray-900"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
@@ -220,7 +220,7 @@ export default function App() {
         {/* Abstract Background Elements */}
         <div className="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-red-50/50 to-transparent -z-10 pointer-events-none" />
         <div className="absolute bottom-0 left-10 w-64 h-64 bg-gray-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 -z-10 animate-pulse" />
-
+        
         <div className="container mx-auto px-6 relative z-10">
           <FadeInSection>
             <span className="block text-red-700 font-bold tracking-[0.2em] text-xs uppercase mb-6 flex items-center gap-2">
@@ -238,7 +238,7 @@ export default function App() {
             <p className="text-xl md:text-2xl text-gray-600 max-w-2xl leading-relaxed mb-12">
               The NJ Content Sharing Network connects local news organizations to share stories, expand coverage, and strengthen democracy throughout the state.
             </p>
-
+            
             <div className="flex flex-wrap gap-4">
               <a href="#pluckywire" className="bg-gray-900 text-white px-8 py-4 rounded-sm font-medium hover:bg-red-700 transition-colors duration-200 flex items-center gap-2">
                 Start sharing <ChevronRight size={18} />
@@ -255,7 +255,7 @@ export default function App() {
       <section id="widgets" className="py-24 bg-white border-t border-gray-200">
         <div className="container mx-auto px-6">
           <FadeInSection>
-            <SectionHeader
+            <SectionHeader 
               label="Automated content feeds"
               title="Content widgets from Distributed Media Lab"
               description="Add a stream of curated New Jersey news to your website with embeddable widgets. Choose from different content sources and customize the display for your audience."
@@ -263,25 +263,25 @@ export default function App() {
           </FadeInSection>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <WidgetCard
+            <WidgetCard 
               title="NJ Spotlight News"
               badge="Statewide policy"
               description="Embed a continuously updated feed of statewide policy, politics, and investigative reporting."
               delay={0}
             />
-            <WidgetCard
+            <WidgetCard 
               title="NJ Arts"
               badge="Arts & culture"
               description="Feature comprehensive arts, culture, and entertainment coverage from NJ Arts on your site."
               delay={100}
             />
-            <WidgetCard
+            <WidgetCard 
               title="NJ Statehouse"
               badge="Government"
               description="Keep your readers informed with state government and legislative coverage."
               delay={200}
             />
-            <WidgetCard
+            <WidgetCard 
               title="SJ Climate News"
               badge="Environment"
               description="Environmental and climate coverage focused on South Jersey and the broader region."
@@ -313,12 +313,12 @@ export default function App() {
             {/* Left Column: Text */}
             <div className="lg:col-span-5">
               <FadeInSection className="sticky top-32">
-                <SectionHeader
+                <SectionHeader 
                   label="Story-by-story sharing"
                   title="Browse and republish with PluckyWire"
                   description="A streamlined content-sharing platform where member outlets can browse stories from other participating news organizations and republish them with one click."
                 />
-
+                
                 <div className="space-y-6 mb-10">
                   <div className="flex gap-4 p-4 bg-white border-l-4 border-red-700 shadow-sm">
                     <Share2 className="text-red-700 flex-shrink-0" size={24} />
@@ -337,7 +337,7 @@ export default function App() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <a href="https://wire.pluckyworks.org/" target="_blank" rel="noopener noreferrer" className="bg-red-700 text-white px-6 py-3 rounded-sm font-medium hover:bg-gray-900 transition-colors text-center">
+                  <a href="https://pluckywire.com" target="_blank" rel="noopener noreferrer" className="bg-red-700 text-white px-6 py-3 rounded-sm font-medium hover:bg-gray-900 transition-colors text-center">
                     Browse stories
                   </a>
                   <a href="mailto:info@centerforcooperativemedia.org" className="border border-gray-300 bg-white text-gray-700 px-6 py-3 rounded-sm font-medium hover:border-gray-900 hover:text-gray-900 transition-colors text-center">
@@ -364,7 +364,7 @@ export default function App() {
               <FadeInSection delay={300}>
                 <div className="bg-gray-900 text-white p-8 border border-gray-900 shadow-xl relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-red-700 rounded-full blur-3xl opacity-20 -mr-10 -mt-10"></div>
-
+                  
                   <h3 className="text-xl font-serif font-bold mb-6 relative z-10 text-red-50">Participating partners</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
                     {["NJ Spotlight News", "NJ Arts", "NJ Statehouse News", "South Jersey Climate News", "Mosaic NJ", "Local Source"].map((partner, i) => (
@@ -388,7 +388,7 @@ export default function App() {
       <section className="py-24 border-t border-gray-200 bg-white">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
-
+            
             {/* Roundup */}
             <div id="roundup">
               <FadeInSection>
@@ -402,7 +402,7 @@ export default function App() {
                 <p className="text-gray-600 mb-8 leading-relaxed">
                   Join thousands of NJ news professionals. We aggregate the most important stories from NJ News Commons partners and deliver them to your inbox every weekday morning.
                 </p>
-
+                
                 <div className="bg-gray-50 p-6 rounded-sm border border-gray-100 mb-8">
                   <h4 className="font-bold text-sm uppercase text-gray-500 mb-4">Curated topics</h4>
                   <div className="flex flex-wrap gap-2">
@@ -414,9 +414,9 @@ export default function App() {
                   </div>
                 </div>
 
-                <a
-                  href="https://centerforcooperativemedia.us5.list-manage.com/subscribe?u=7f46611cb324e9e193acda7cc&id=dd61b54487"
-                  target="_blank"
+                <a 
+                  href="https://centerforcooperativemedia.us5.list-manage.com/subscribe?u=7f46611cb324e9e193acda7cc&id=dd61b54487" 
+                  target="_blank" 
                   rel="noopener noreferrer"
                   className="w-full block bg-red-700 text-white text-center py-4 font-bold hover:bg-red-800 transition-colors rounded-sm shadow-md"
                 >
@@ -493,7 +493,7 @@ export default function App() {
                 <div className="bg-gray-800 rounded-lg border border-gray-700 overflow-hidden relative group">
                   <div className="flex items-center justify-between px-4 py-2 bg-gray-950 border-b border-gray-700">
                     <span className="text-xs font-mono text-gray-500">Standard boilerplate</span>
-                    <button
+                    <button 
                       onClick={copyToClipboard}
                       className="flex items-center gap-2 text-xs font-medium text-gray-400 hover:text-white transition-colors"
                     >
@@ -540,7 +540,7 @@ export default function App() {
               </a>
             </div>
           </div>
-
+          
           <div className="mt-12 pt-8 border-t border-gray-900 text-center md:text-left text-xs text-gray-700 flex flex-col md:flex-row justify-between">
             <p>&copy; {new Date().getFullYear()} Center for Cooperative Media. All rights reserved.</p>
             <p className="mt-2 md:mt-0">Built for New Jersey journalism.</p>
